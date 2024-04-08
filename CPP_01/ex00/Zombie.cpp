@@ -1,19 +1,20 @@
 #include "Zombie.hpp"
 
-Zombie::Zombie(void) {
-    this->name = "Default";
+Zombie::Zombie(void) 
+{
 }
 
-Zombie::Zombie(std::string newName) {
-    this->name = newName;
+Zombie::Zombie(std::string name) 
+{
+    _name = name;
 }
 
 void	Zombie::zombieActivity(void)
 {
-	std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
 Zombie::~Zombie(void)
 {
-	std::cout << name << ": No More BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << _name << ": No More BraiiiiiiinnnzzzZ..." << std::endl;
 }

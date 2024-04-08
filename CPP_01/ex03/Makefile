@@ -1,10 +1,12 @@
-NAME = Braiiiiiiinnnzzzz
+NAME = unnecessaryViolence
 CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
 SRC =	main.cpp \
-		newZombie.cpp \
-		randomChump.cpp \
-		Zombie.cpp
+		HumanA.cpp  \
+		HumanB.cpp  \
+		main.cpp \
+		Weapon.cpp 
+
 OBJ = $(SRC:%.cpp=obj/%.o)
 
 all: $(NAME)

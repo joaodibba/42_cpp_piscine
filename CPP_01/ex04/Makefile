@@ -1,10 +1,8 @@
-NAME = Braiiiiiiinnnzzzz
+NAME = sedIsForLosers
 CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRC =	main.cpp \
-		newZombie.cpp \
-		randomChump.cpp \
-		Zombie.cpp
+SRC =	main.cpp 
+
 OBJ = $(SRC:%.cpp=obj/%.o)
 
 all: $(NAME)
