@@ -1,6 +1,6 @@
 #include "MyAwesomePhoneBook.hpp"
 
-PhoneBook::PhoneBook()
+PhoneBook::PhoneBook() : lastContact(0)
 {
 }
 
@@ -55,30 +55,32 @@ void	PhoneBook::addContact()
 		return ;
 	}
 	contact.setDarkestSecret(input);
-	for (int i = 0; i < MAX_CONTACTS; i++)
-	{
-		if (this->contacts[i].getFirstName().empty())
-		{
-			this->contacts[i] = contact;
-			break;
-		}
-	}
+	this->contacts[lastContact] = contact;
+	lastContact++;
+	if (lastContact > 7)
+		lastContact = 0;
 }
-
-// IS this replacing the 8th?
 
 void	printContact(Contact contact)
 {
-	std::cout << formatStr(contact.getFirstName(), MAX_WIDTH) << "|" << formatStr(contact.getLastName(), MAX_WIDTH) << "|" << formatStr(contact.getNickName(), MAX_WIDTH) << std::endl;
+	int	fieldW = 10;
+
+	std::cout 
+			<< std::right << std::setw(fieldW) << contact.getFirstName() << std::endl
+			<< "|" << std::right << std::setw(fieldW) << contact.getLastName() << std::endl
+			<< "|" << std::right << std::setw(fieldW) << contact.getNickName()
+	<< std::endl;
 }
 
 void	PhoneBook::printAllContacts()
 {
-	std::cout << "     index" << "|" << "First name" << "|" << " Last Name" << "|" << "  Nickname" << std::endl;
-	std::cout << "----------" << "+" << "----------" << "+" << "----------" << "+" << "----------" << std::endl;
+	std::cout << "     index" << "|" << "First name" << "|" << " Last Name" << "|" << "  Nickname\n"
+	<< "----------" << "+" << "----------" << "+" << "----------" << "+" << "----------" << std::endl;
 	for (int i = 0; i < MAX_CONTACTS; i++)
 	{
-		std::cout << formatStr(std::to_string(i), MAX_WIDTH) << "|";
+		std::stringstream indexStr;
+		indexStr << i + 1;
+		std::cout << formatStr(indexStr.str(), MAX_WIDTH) << "|";
 		printContact(this->contacts[i]);
 	}
 }
@@ -94,12 +96,16 @@ void	PhoneBook::searchContact()
 		int index = input[0] - '0';
 		if (!this->contacts[index].getFirstName().empty())
 		{
-			std::cout << "Index          : " << std::to_string(index) << std::endl;
-			std::cout << "First Name     : " << contacts[index].getFirstName() << std::endl;
-			std::cout << "Last Name      : " << contacts[index].getLastName() << std::endl;
-			std::cout << "Nick Name      : " << contacts[index].getNickName() << std::endl;
-			std::cout << "Phone Number   : " << contacts[index].getPhoneNumber() << std::endl;
-			std::cout << "Darkest Secret : " << contacts[index].getDarkestSecret() << std::endl;
+			std::stringstream indexStr;
+			indexStr << index;
+			std::cout
+						<< "Index          : " << indexStr.str()
+						<< "\nFirst Name     : " << contacts[index].getFirstName()
+						<< "\nLast Name      : " << contacts[index].getLastName()
+						<< "\nNick Name      : " << contacts[index].getNickName()
+						<< "\nPhone Number   : " << contacts[index].getPhoneNumber()
+						<< "\nDarkest Secret : " << contacts[index].getDarkestSecret() 
+						<< std::endl;
 		}
 		else
 			std::cout << "Contact not found" << std::endl;

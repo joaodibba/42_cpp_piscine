@@ -21,7 +21,7 @@ std::string	formatStr(std::string str, unsigned int maxWidth)
 
 bool strIsAllNum(std::string str)
 {
-	for (int i = 0; i < str.length(); i++) 
+	for (size_t i = 0; i < str.length(); i++) 
 	{
 		if (!isdigit(str[i]))
 			return (false);
