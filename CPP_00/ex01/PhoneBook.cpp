@@ -63,12 +63,10 @@ void	PhoneBook::addContact()
 
 void	printContact(Contact contact)
 {
-	int	fieldW = 10;
-
 	std::cout 
-			<< std::right << std::setw(fieldW) << contact.getFirstName() << std::endl
-			<< "|" << std::right << std::setw(fieldW) << contact.getLastName() << std::endl
-			<< "|" << std::right << std::setw(fieldW) << contact.getNickName()
+			<< std::right << std::setw(MAX_WIDTH) << formatStr(contact.getFirstName(), MAX_WIDTH)
+			<< "|" << std::right << std::setw(MAX_WIDTH) << formatStr(contact.getLastName(), MAX_WIDTH)
+			<< "|" << std::right << std::setw(MAX_WIDTH) << formatStr(contact.getNickName(), MAX_WIDTH)
 	<< std::endl;
 }
 
@@ -79,8 +77,8 @@ void	PhoneBook::printAllContacts()
 	for (int i = 0; i < MAX_CONTACTS; i++)
 	{
 		std::stringstream indexStr;
-		indexStr << i + 1;
-		std::cout << formatStr(indexStr.str(), MAX_WIDTH) << "|";
+		indexStr << i;
+		std::cout << std::right << std::setw(MAX_WIDTH) << indexStr.str() << "|";
 		printContact(this->contacts[i]);
 	}
 }
