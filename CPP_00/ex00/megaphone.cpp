@@ -8,8 +8,7 @@ int main(int ac, char **av)
 	}
 	for (int i = 1; av[i]; i++){
 		for(int j = 0; av[i][j]; j++){
-			av[i][j] = std::toupper(av[i][j]);
-			std::cout << av[i][j];
+			std::cout << static_cast<char>(std::toupper(av[i][j]));
 		}
 		std::cout << " ";
 	}

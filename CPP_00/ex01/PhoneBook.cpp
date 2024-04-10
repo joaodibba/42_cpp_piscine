@@ -64,16 +64,20 @@ void	PhoneBook::addContact()
 void	printContact(Contact contact)
 {
 	std::cout 
-			<< std::right << std::setw(MAX_WIDTH) << formatStr(contact.getFirstName(), MAX_WIDTH)
-			<< "|" << std::right << std::setw(MAX_WIDTH) << formatStr(contact.getLastName(), MAX_WIDTH)
-			<< "|" << std::right << std::setw(MAX_WIDTH) << formatStr(contact.getNickName(), MAX_WIDTH)
-	<< std::endl;
+			<< std::right << std::setw(MAX_WIDTH) << formatStr(contact.getFirstName(), MAX_WIDTH) << "|" 
+			<< std::right << std::setw(MAX_WIDTH) << formatStr(contact.getLastName(), MAX_WIDTH) << "|"
+			<< std::right << std::setw(MAX_WIDTH) << formatStr(contact.getNickName(), MAX_WIDTH) << std::endl;
 }
 
 void	PhoneBook::printAllContacts()
 {
-	std::cout << "     index" << "|" << "First name" << "|" << " Last Name" << "|" << "  Nickname\n"
-	<< "----------" << "+" << "----------" << "+" << "----------" << "+" << "----------" << std::endl;
+	std::cout 
+			<< std::right << std::setw(MAX_WIDTH) << "index" << "|"
+			<< std::right << std::setw(MAX_WIDTH) << "First name" << "|"
+			<< std::right << std::setw(MAX_WIDTH) << "Last Name" << "|" 
+			<< std::right << std::setw(MAX_WIDTH) << "Nickname\n"
+			<< "----------" << "+" << "----------" << "+" 
+			<< "----------" << "+" << "----------" << std::endl;
 	for (int i = 0; i < MAX_CONTACTS; i++)
 	{
 		std::stringstream indexStr;

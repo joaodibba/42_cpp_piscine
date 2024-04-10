@@ -2,15 +2,13 @@
 
 std::string	formatStr(std::string str, unsigned int maxWidth)
 {
-	std::string	formattedField;	
+	std::string	formattedField = str;
 
 	if (str.length() > maxWidth)
 	{
 		formattedField = str.substr(0, maxWidth - 1);
 		formattedField += ".";
 	}
-	else
-		formattedField = str;
 	return (formattedField);
 }
 
