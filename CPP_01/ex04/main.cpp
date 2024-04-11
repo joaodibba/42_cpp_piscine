@@ -58,8 +58,8 @@ int main(int ac, char **av)
 	if (ac != 4 || av[1][0] == '\0' || av[2][0] == '\0' || av[3][0] == '\0')
 	{
 		std::cerr << "Usage: ./sedIsForLosers <filename> <string1> <string2>" << std::endl;
-		return 0;
+		return (0);
 	}
 	replaceInFile(av[1], av[2], av[3]);
-	return 0;
+	return (0);
 }
