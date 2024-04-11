@@ -10,7 +10,7 @@ int	main()
 	while (1){
 		std::cout << "\x1b[2K\x1b[1G" << "PhoneBook=>";
 		std::getline(std::cin, input);
-		if (std::cin.eof())
+		if (std::cin.eof() || input.empty())
 			break;
 		if (input == "ADD")
 			pb.addContact();

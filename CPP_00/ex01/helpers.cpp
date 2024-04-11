@@ -12,12 +12,20 @@ std::string	formatStr(std::string str, unsigned int maxWidth)
 	return (formattedField);
 }
 
-bool strIsAllNum(std::string str)
+bool strIsAllNum(const std::string str)
 {
-	for (size_t i = 0; i < str.length(); i++) 
-	{
+	for (size_t i = 0; i < str.length(); i++){
 		if (!isdigit(str[i]))
 			return (false);
 	}
 	return (true);
+}
+
+bool strContainsTab(const std::string &str)
+{
+	for (size_t i = 0; i < str.length(); i++){
+		if (str[i] == '\t')
+			return (true);
+	}
+    return (false);
 }

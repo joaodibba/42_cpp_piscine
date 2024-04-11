@@ -2,8 +2,8 @@ NAME = MyAwesomePhoneBook
 CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
 SRC =	Contact.cpp \
-		PhoneBook.cpp \
 		helpers.cpp \
+		PhoneBook.cpp \
 		main.cpp
 OBJ = $(SRC:%.cpp=obj/%.o)
 

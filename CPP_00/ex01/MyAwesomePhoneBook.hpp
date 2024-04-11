@@ -12,6 +12,7 @@
 # include "Contact.hpp"
 
 std::string	formatStr(std::string str, unsigned int width);
-bool		strIsAllNum(std::string str);
+bool		strIsAllNum(const std::string str);
+bool		strContainsTab(const std::string &str);
 
 #endif

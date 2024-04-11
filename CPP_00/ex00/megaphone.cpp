@@ -10,7 +10,8 @@ int main(int ac, char **av)
 		for(int j = 0; av[i][j]; j++){
 			std::cout << static_cast<char>(std::toupper(av[i][j]));
 		}
-		std::cout << " ";
+		if (av[i + 1])
+			std::cout << " ";
 	}
 	std::cout << std::endl;
 	return (0);
