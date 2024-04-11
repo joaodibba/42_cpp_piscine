@@ -11,7 +11,7 @@ int	main()
 		std::cout << "\x1b[2K\x1b[1G" << "PhoneBook=>";
 		std::getline(std::cin, input);
 		if (std::cin.eof() || input.empty())
-			break;
+			continue;
 		if (input == "ADD")
 			pb.addContact();
 		else if (input == "SEARCH")

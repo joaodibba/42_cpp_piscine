@@ -13,11 +13,17 @@ private:
 	Contact contacts[MAX_CONTACTS];
 	int		lastContact;
 
+	std::string addFirstName();
+	std::string addLastName();
+	std::string addNickName();
+	std::string addPhoneNumber();
+	std::string addDarkestSecret();
+	void		printAllContacts();
+
 public:
 	PhoneBook();
 	void	addContact();
 	void	searchContact();
-	void	printAllContacts();
 };
 
 #endif

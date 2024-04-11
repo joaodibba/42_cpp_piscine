@@ -4,85 +4,125 @@ PhoneBook::PhoneBook() : lastContact(0)
 {
 }
 
+std::string PhoneBook::addFirstName()
+{
+	std::string input;
+	std::cout << "Enter first name: ";
+	std::getline(std::cin >> std::ws, input);
+	if (std::cin.eof() || input.empty())
+	{
+		std::cout << "Input not valid: " << "First Name can't be empty" << std::endl;
+		return "";
+	}
+	if (strContainsTab(input))
+	{
+		std::cout << "Input not valid: " << "First Name can't have Tabs" << std::endl;
+		return "";
+	}
+	return input;
+}
+
+std::string PhoneBook::addLastName()
+{
+	std::string input;
+	std::cout << "Enter last name: ";
+	std::getline(std::cin >> std::ws, input);
+	if (std::cin.eof() || input.empty())
+	{
+		std::cout << "Input not valid: " << "Last Name can't be empty" << std::endl;
+		return "";
+	}
+	if (strContainsTab(input))
+	{
+		std::cout << "Input not valid: " << "Last Name can't have Tabs" << std::endl;
+		return "";
+	}
+	return input;
+}
+
+std::string PhoneBook::addNickName()
+{
+	std::string input;
+	std::cout << "Enter nickname: ";
+	std::getline(std::cin >> std::ws, input);
+	if (std::cin.eof() || input.empty())
+	{
+		std::cout << "Input not valid: " << "Nickname can't be empty" << std::endl;
+		return "";
+	}
+	if (strContainsTab(input))
+	{
+		std::cout << "Input not valid: " << "Nickname can't have Tabs" << std::endl;
+		return "";
+	}
+	return input;
+}
+
+std::string PhoneBook::addPhoneNumber()
+{
+	std::string input;
+	std::cout << "Enter phone number: ";
+	std::getline(std::cin >> std::ws, input);
+	if (std::cin.eof() || input.empty())
+	{
+		std::cout << "Input not valid: " << "Phone Number can't be empty" << std::endl;
+		return "";
+	}
+	if (!strIsAllNum(input))
+	{
+		std::cout << "Input not valid: " << "Phone Number must contain only digits" << std::endl;
+		return "";
+	}
+	if (strContainsTab(input))
+	{
+		std::cout << "Input not valid: " << "Phone Number can't have Tabs" << std::endl;
+		return "";
+	}
+	return input;
+}
+
+std::string PhoneBook::addDarkestSecret()
+{
+	std::string input;
+	std::cout << "Enter darkest secret: ";
+	std::getline(std::cin >> std::ws, input);
+	if (std::cin.eof() || input.empty())
+	{
+		std::cout << "Input not valid: " << "Darkest Secret can't be empty" << std::endl;
+		return "";
+	}
+	if (strContainsTab(input))
+	{
+		std::cout << "Input not valid: " << "Darkest Secret can't have Tabs" << std::endl;
+		return "";
+	}
+	return input;
+}
+
 void PhoneBook::addContact()
 {
 	std::string input;
 	Contact contact;
 
-	std::cout << "Enter first name: ";
-	std::getline(std::cin >> std::ws, input);
-	if (std::cin.eof() || input.empty())
-	{
-		std::cout << "Expected a value: First Name can't be empty" << std::endl;
+	input = addFirstName();
+	if (input.empty())
 		return;
-	}
-	if (strContainsTab(input))
-	{
-		std::cout << "Tab's not valid: First Name can't have Tabs" << std::endl;
-		return;
-	}
 	contact.setFirstName(input);
-
-	std::cout << "Enter last name: ";
-	std::getline(std::cin >> std::ws, input);
-	if (std::cin.eof() || input.empty())
-	{
-		std::cout << "Expected a value: Last Name can't be empty" << std::endl;
+	input = addLastName();
+	if (input.empty())
 		return;
-	}
-	if (strContainsTab(input))
-	{
-		std::cout << "Tab's not valid: Last Name can't have Tabs" << std::endl;
-		return;
-	}
 	contact.setLastName(input);
-
-	std::cout << "Enter nickname: ";
-	std::getline(std::cin >> std::ws, input);
-
-	if (std::cin.eof() || input.empty())
-	{
-		std::cout << "Expected a value: Nickname can't be empty" << std::endl;
+	input = addNickName();
+	if (input.empty())
 		return;
-	}
-	if (strContainsTab(input))
-	{
-		std::cout << "Tab's not valid: Nickname can't have Tabs" << std::endl;
-		return;
-	}
 	contact.setNickName(input);
-
-	std::cout << "Enter phone number: ";
-	std::getline(std::cin >> std::ws, input);
-	if (std::cin.eof() || input.empty())
-	{
-		std::cout << "Expected a value: Phone Number can't be empty" << std::endl;
+	input = addPhoneNumber();
+	if (input.empty())
 		return;
-	}
-	if (!strIsAllNum(input))
-	{
-		std::cout << "Error: Phone Number must contain only digits" << std::endl;
-		return;
-	}
-	if (strContainsTab(input))
-	{
-		std::cout << "Tab's not valid: Phone Number can't have Tabs" << std::endl;
-		return;
-	}
 	contact.setPhoneNumber(input);
-
-	std::cout << "Enter darkest secret: ";
-	std::getline(std::cin >> std::ws, input);
-	if (std::cin.eof() || input.empty())
-	{
-		std::cout << "Expected a value: Darkest Secret can't be empty" << std::endl;
+	input = addDarkestSecret();
+	if (input.empty())
 		return;
-	}
-	if (strContainsTab(input))
-	{
-		std::cout << "Tab's not valid: Darkest Secret can't have Tabs" << std::endl;
-		return;
-	}
 	contact.setDarkestSecret(input);
 
 	this->contacts[lastContact] = contact;
