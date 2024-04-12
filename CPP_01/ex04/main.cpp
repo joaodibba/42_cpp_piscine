@@ -31,7 +31,8 @@ static std::string processFile(std::ifstream& file, const std::string& s1, const
 
 static void replaceInFile(std::string filename, const std::string s1, const std::string s2)
 {
-	if (!validateInputs(s1, s2)) return;
+	if (!validateInputs(s1, s2))
+		return;
 
 	std::ifstream file(filename.c_str());
 	if (!file.is_open())

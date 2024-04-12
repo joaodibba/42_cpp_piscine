@@ -11,10 +11,10 @@ public:
 	~Harl();
 	void 	complain(std::string level);
 private:
-	void		debug();
-	void		info();
-	void		warning();
-	void		error();
+	void		_debug();
+	void		_info();
+	void		_warning();
+	void		_error();
 };
 
 #endif

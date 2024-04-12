@@ -2,13 +2,11 @@
 
 int main ()
 {
-    Zombie	*zombie1;
-
-	zombie1 = newZombie("Zombie1");
-	if (!zombie1)
+    Zombie	*zombie = newZombie("Zombie1");
+	if (!zombie)
 		return (0);
     randomChump("Zombie2");
 
-	delete zombie1;
+	delete zombie;
 	return (0);
 }

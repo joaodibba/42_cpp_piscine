@@ -8,11 +8,11 @@ int main ()
 	std::string &brainRef = brain;
 
 	std::cout 
-			<< "Address of the string: " << &brain << std::endl
-			<< "Address of the pointer: " << &brainPtr << std::endl
-			<< "Address of the reference: " << &brain << std::endl
-			<< "Value of the String: " << brain << std::endl
-			<< "Value of the Pointer: " << *brainPtr << std::endl
-			<< "Value of the Reference: " << brainRef << std::endl;
+			<< "Address of the string: " << &brain
+			<< "\nAddress of the pointer: " << &brainPtr
+			<< "\nAddress of the reference: " << &brain
+			<< "\nValue of the String: " << brain
+			<< "\nValue of the Pointer: " << *brainPtr
+			<< "\nValue of the Reference: " << brainRef << std::endl;
 	return (0);
 }
