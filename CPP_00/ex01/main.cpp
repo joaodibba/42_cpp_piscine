@@ -5,12 +5,13 @@ int	main()
 	PhoneBook pb;
 	std::string input;
 
-	std::cout << "Welcome to the phonebook!" << std::flush;
-	usleep(SLEEP_TIME / 1.6);
+	std::cout << "Welcome to the phonebook!" << std::endl;
 	while (1){
-		std::cout << "\x1b[2K\x1b[1G" << "PhoneBook=>";
+		std::cout << "PhoneBook=>";
 		std::getline(std::cin, input);
-		if (std::cin.eof() || input.empty())
+		if (std::cin.eof())
+			break;
+		if (input.empty())
 			continue;
 		if (input == "ADD")
 			pb.addContact();

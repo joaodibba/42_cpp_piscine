@@ -140,6 +140,8 @@ void	printContact(Contact contact)
 
 void	PhoneBook::printAllContacts()
 {
+	if (this->contacts[0].getFirstName().empty())
+		return ;
 	std::cout 
 			<< std::right << std::setw(MAX_WIDTH) << "index" << "|"
 			<< std::right << std::setw(MAX_WIDTH) << "First name" << "|"
@@ -149,15 +151,23 @@ void	PhoneBook::printAllContacts()
 			<< "----------" << "+" << "----------" << std::endl;
 	for (int i = 0; i < MAX_CONTACTS; i++)
 	{
-		std::stringstream indexStr;
-		indexStr << i;
-		std::cout << std::right << std::setw(MAX_WIDTH) << indexStr.str() << '|';
-		printContact(this->contacts[i]);
+		if (!this->contacts[i].getFirstName().empty())
+		{
+			std::stringstream indexStr;
+			indexStr << i;
+			std::cout << std::right << std::setw(MAX_WIDTH) << indexStr.str() << '|';
+			printContact(this->contacts[i]);
+		}
 	}
 }
 
 void	PhoneBook::searchContact()
 {
+	if (this->contacts[0].getFirstName().empty())
+	{
+		std::cout << "PhoneBook empty :(" << std::endl;
+		return ;
+	}
 	printAllContacts();
 	std::string input;
 	std::cout << "Enter index: ";
