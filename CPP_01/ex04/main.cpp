@@ -18,49 +18,64 @@ static std::string processFile(std::ifstream& file, const std::string& s1, const
 	std::string content;
 	while (std::getline(file, line))
 	{
-		size_t pos = 0;
-		while ((pos = line.find(s1, pos)) != std::string::npos)
+		std::string newLine;
+		std::size_t pos = 0;
+		while (pos < line.length())
 		{
-			line.replace(pos, s1.length(), s2);
-			pos += s2.length();
+			if (line.substr(pos, s1.length()) == s1)
+			{
+				newLine += s2;
+				pos += s1.length();
+			}
+			else
+				newLine += line[pos++];
 		}
-		content += line + "\n";
+		content += newLine + "\n";
 	}
 	return (content);
 }
 
-static void replaceInFile(std::string filename, const std::string s1, const std::string s2)
+static void replaceInFile(const std::string& filename, const std::string& s1, const std::string& s2)
 {
 	if (!validateInputs(s1, s2))
 		return;
 
-	std::ifstream file(filename.c_str());
-	if (!file.is_open())
-	{
-		std::cerr << "Error: could not open file" << std::endl;
+	std::string content;
+	try {
+		std::ifstream file(filename);
+		if (!file.is_open()){
+			std::cerr << "Error: could not open file " << filename << std::endl;
+			return;
+		}
+		content = processFile(file, s1, s2);
+		file.close();
+	} catch (const std::ifstream::failure& e) {
+		std::cerr << "Exception opening/reading file: " << e.what() << std::endl;
+		return;
+	} catch (const std::exception& e) {
+		std::cerr << "Error during file processing: " << e.what() << std::endl;
 		return;
 	}
-
-	std::string content = processFile(file, s1, s2);
-	file.close();
-
-	std::ofstream newfile(filename + ".replace");
-	if (!newfile.is_open())
-	{
-		std::cerr << "Error: could not create new file" << std::endl;
-		return;
+	try {
+		std::ofstream newfile(filename + ".replace");
+		if (!newfile.is_open()){
+			std::cerr << "Error: could not create new file" << std::endl;
+			return;
+		}
+		newfile << content;
+		newfile.close();
+	} catch (const std::ofstream::failure& e) {
+		std::cerr << "Exception opening/writing file: " << e.what() << std::endl;
+	} catch (const std::exception& e) {
+		std::cerr << "Error during file creation: " << e.what() << std::endl;
 	}
-	newfile << content;
-	newfile.close();
 }
 
 int main(int ac, char **av)
 {
-	if (ac != 4 || av[1][0] == '\0' || av[2][0] == '\0' || av[3][0] == '\0')
-	{
+	if (ac == 4 && av[1][0] && av[2][0] && av[3][0])
+		replaceInFile(av[1], av[2], av[3]);
+	else
 		std::cerr << "Usage: ./sedIsForLosers <filename> <string1> <string2>" << std::endl;
-		return (0);
-	}
-	replaceInFile(av[1], av[2], av[3]);
 	return (0);
 }

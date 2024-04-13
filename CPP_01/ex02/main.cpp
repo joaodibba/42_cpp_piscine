@@ -3,16 +3,25 @@
 
 int main ()
 {
-	std::string brain = "HI THIS IS BRAIN";
-	std::string *brainPtr = &brain;
-	std::string &brainRef = brain;
+	std::string stringSTR = "HI THIS IS BRAIN";
+	std::string *stringPTR = &stringSTR;
+	std::string &stringREF = stringSTR;
 
 	std::cout 
-			<< "Address of the string: " << &brain
-			<< "\nAddress of the pointer: " << &brainPtr
-			<< "\nAddress of the reference: " << &brain
-			<< "\nValue of the String: " << brain
-			<< "\nValue of the Pointer: " << *brainPtr
-			<< "\nValue of the Reference: " << brainRef << std::endl;
+			<< "Address : "   << &stringSTR
+			<< "\nAddress : " << stringPTR
+			<< "\nAddress : " << &stringREF
+			<< "\nValue   : " << stringSTR
+			<< "\nValue   : " << *stringPTR
+			<< "\nValuee  : " << stringREF << std::endl;
 	return (0);
 }
+
+/* OUTPUT:
+Address of the string: 0x16bd8b1c0
+Address of the pointer: 0x16bd8b1b8
+Address of the reference: 0x16bd8b1c0
+Value of the String: HI THIS IS BRAIN
+Value of the Pointer: HI THIS IS BRAIN
+Value of the Reference: HI THIS IS BRAIN
+*/

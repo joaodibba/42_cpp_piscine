@@ -5,14 +5,15 @@
 # include <iostream>
 
 class Zombie {
-public:
-	~Zombie();
-    
-	Zombie(std::string newName);
-    void zombieActivity(void);
 
 private:
     std::string _name;
+
+public:
+	Zombie(const std::string &newName);
+	~Zombie();
+    void announce( void );
+
 };
 
 Zombie	*newZombie( std::string name );

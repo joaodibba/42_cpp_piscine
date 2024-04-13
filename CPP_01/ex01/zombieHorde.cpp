@@ -8,9 +8,10 @@ Zombie* zombieHorde(int N, std::string name)
 		return (NULL);
 	}
 
-	Zombie	*horde = new Zombie[N];
-	if (!horde)
-	{
+	try {
+		Zombie	*horde = new Zombie[N];
+	}
+	catch (std::bad_alloc &e) {
 		std::cerr << "Memory allocation failed" << std::endl;
 		return (NULL);
 	}
