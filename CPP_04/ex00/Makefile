@@ -1,9 +1,12 @@
-NAME = myFirstOCF
+NAME = PolymorphicZoo
 CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
 SRC =	main.cpp \
-		Fixed.cpp
-
+		Animal.cpp \
+		Dog.cpp \
+		Cat.cpp \
+		WrongAnimal.cpp \
+		WrongCat.cpp
 OBJ = $(SRC:%.cpp=obj/%.o)
 
 all: $(NAME)

@@ -1,9 +1,9 @@
-NAME = myFirstOCF
+NAME = ScavTrap
 CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRC =	main.cpp \
-		Fixed.cpp
-
+SRC =	ClapTrap.cpp \
+		ScavTrap.cpp \
+		main.cpp
 OBJ = $(SRC:%.cpp=obj/%.o)
 
 all: $(NAME)
