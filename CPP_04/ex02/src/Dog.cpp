@@ -1,12 +1,12 @@
 #include "../includes/Dog.hpp"
 
-Dog::Dog() : Animal("Dog")
+Dog::Dog() : AAnimal("Dog")
 {
 	std::cout << "Dog default constructor called" << std::endl;
 	brain = new Brain();
 }
 
-Dog::Dog(const Dog &dog) : Animal(dog), brain(NULL)
+Dog::Dog(const Dog &dog) : AAnimal(dog), brain(NULL)
 {
 	*this = dog;
 }
@@ -27,7 +27,7 @@ Dog &Dog::operator=(const Dog &other)
 {
     if (this == &other)
         return (*this);
-    this->Animal::operator=(other);
+    this->AAnimal::operator=(other);
     if (this->brain)
         delete this->brain;
     this->brain = new Brain(*other.brain);

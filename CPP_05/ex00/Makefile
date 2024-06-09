@@ -1,13 +1,8 @@
-NAME = BrainedZoo
-CXX = g++
+NAME = Bureaucrat
+CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -fsanitize=address
 SRC =	src/main.cpp \
-		src/Animal.cpp \
-		src/Dog.cpp \
-		src/Cat.cpp \
-		src/WrongAnimal.cpp \
-		src/WrongCat.cpp \
-		src/Brain.cpp
+		src/Bureaucrat.cpp
 
 OBJ = $(SRC:src/%.cpp=obj/%.o)
 

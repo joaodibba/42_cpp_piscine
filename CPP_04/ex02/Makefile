@@ -1,8 +1,8 @@
-NAME = BrainedZoo
-CXX = g++
+NAME = AbstractZoo
+CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -fsanitize=address
 SRC =	src/main.cpp \
-		src/Animal.cpp \
+		src/AAnimal.cpp \
 		src/Dog.cpp \
 		src/Cat.cpp \
 		src/WrongAnimal.cpp \

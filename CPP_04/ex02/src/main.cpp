@@ -1,4 +1,4 @@
-#include "../includes/Animal.hpp"
+#include "../includes/AAnimal.hpp"
 #include "../includes/Dog.hpp"
 #include "../includes/Cat.hpp"
 #include "../includes/WrongAnimal.hpp"
@@ -6,14 +6,15 @@
 
 int main()
 {
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
+    // AAnimal test;
+    const AAnimal* j = new Dog();
+    const AAnimal* i = new Cat();
     delete j;//should not create a leak
     delete i;
 
     std::cout << "\n*********** My tests ***********\n" << std::endl;
 
-    Animal *animals[10];
+    AAnimal *animals[10];
     
     int x = 0;
     for (x = 0; x < 5; x++)
@@ -34,17 +35,18 @@ int main()
 
     std::cout << "\n*********** My tests ***********\n" << std::endl;
 
-    Animal *beast = new Dog();
+    AAnimal *beast = new Dog();
     
     try 
     {
-		for (int x = 0; x < 101; x++)
-    	    beast->getBrain()->setIdea(x, "Thinks in the language of dogs...");
-		std::cout << "Joao "  << std::endl;
-    	Animal *copy = new Dog(static_cast<Dog&>(*beast));
-
     	for (int x = 0; x < 101; x++)
-    	    std::cout << copy->getBrain()->getIdea(x) << std::endl;
+        	beast->getBrain()->setIdea(x, "Thinks in the language of dogs...");
+
+    	AAnimal *copy = new Dog(static_cast<Dog&>(*beast));
+
+  		std::cout << std::endl;
+        for (int x = 0; x < 101; x++)
+            std::cout << copy->getBrain()->getIdea(x) << std::endl;
     	delete copy;
     } 
     catch(std::exception& e)
