@@ -4,7 +4,7 @@
 #include "../includes/WrongAnimal.hpp"
 #include "../includes/WrongCat.hpp"
 
-int main()
+int main() //TODO: does not compile
 {
     const Animal* j = new Dog();
     const Animal* i = new Cat();
