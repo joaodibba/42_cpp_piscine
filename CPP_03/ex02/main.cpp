@@ -1,6 +1,6 @@
 #include <iostream>
 #include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 void put_line(bool nl)
 {
@@ -9,9 +9,9 @@ void put_line(bool nl)
         std::cout << std::endl;
 }
 
-int main()
+int main() // TODO: you need to have ScavTrap files in this directory too. 
 {
-    ScavTrap bro("bro");
+    ScavTrap bro("bro"); // TODO: this main is not for this exercise
     ScavTrap dude("dude");
 
     dude.guardGate();

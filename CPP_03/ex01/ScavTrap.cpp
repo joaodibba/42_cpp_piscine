@@ -10,6 +10,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	_energyPoints = 50;
 	_attackDamage = 20;
 	_guardGateMode = false;
+	//TODO: change the message so u can tell apart the objects better
 	std::cout << "ScavTrap " << _name << " is here!" << std::endl;
 }
 

@@ -9,7 +9,7 @@ void put_line(bool nl)
         std::cout << std::endl;
 }
 
-int main()
+int main() //TODO: this ex does not compile
 {
     ScavTrap bro("bro");
     ScavTrap dude("dude");

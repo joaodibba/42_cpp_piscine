@@ -21,6 +21,7 @@ ClapTrap::~ClapTrap()
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& copy)
 {
+	// TODO: protection here. !!!bro just protect self assessment everywhere!!!
 	_name = copy._name;
 	_hitPoints = copy._hitPoints;
 	_energyPoints = copy._energyPoints;
