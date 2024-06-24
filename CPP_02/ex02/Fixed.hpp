@@ -18,7 +18,7 @@ public:
 
 	Fixed	&operator=(const Fixed &fixed); // Copy assignment operator
 	int		getRawBits(void) const; // Returns the raw value of the fixed point number
-	void	setRawBits(int const raw); // Sets the raw value of the fixed point number
+	void	setRawBits(const int raw); // Sets the raw value of the fixed point number
 	int		toInt(void) const; // Returns the fixed point number as an int
 	float	toFloat(void) const; // Returns the fixed point number as a float
 

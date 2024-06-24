@@ -1,102 +1,64 @@
 #include "Fixed.hpp"
 
-int main( void )
-{
-	// Fixed a;
-	// Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+int main() {
+    // Test default constructor
+    Fixed a;
+    std::cout << "value of a: " << a << std::endl;
 
-	// std::cout << a << std::endl;
-	// std::cout << ++a << std::endl;
-	// std::cout << a << std::endl;
-	// std::cout << a++ << std::endl;
-	// std::cout << a << std::endl;
+    // Test integer constructor
+    Fixed b(10);
+    std::cout << "value of b: " << b << std::endl;
 
-	// std::cout << b << std::endl;
+    // Test float constructor
+    Fixed c(10.5f);
+    std::cout << "value of c: " << c << std::endl;
 
-	// std::cout << Fixed::max( a, b ) << std::endl;
+    // Test copy constructor
+    Fixed d(b);
+    std::cout << "value of b (after copy constructor): " << b << std::endl;
+    std::cout << "value of d (after copy constructor): " << d << std::endl;
 
-	// {
-	// 	Fixed a = Fixed( 5.05f );
-	// 	Fixed b = Fixed( 2.02f );
-	// 	std::cout << a / b << std::endl;
-	// 	std::cout << a / 0 << std::endl;
-	// 	std::cout << b / 0 << std::endl;
-	// 	std::cout << Fixed( 0 ) / 0 << std::endl;
-	// }
-	return 0;
+    // Test copy assignment operator
+    std::cout << "value of a: " << a << std::endl;
+    std::cout << "value of c: " << c << std::endl;
+    a = c;
+    std::cout << "a (after assignment): " << a << std::endl;
+    std::cout << "value of c: " << c << std::endl;
+
+    // Test comparison operators
+    std::cout << "value of a: " << a << std::endl;
+    std::cout << "value of b: " << b << std::endl;
+    std::cout << std::boolalpha;
+    std::cout << a << " < " << b << " : " << (a < b) << std::endl;
+    std::cout << a << " > " << b << " : " << (a > b) << std::endl;
+    std::cout << a << " <= " << b << " : " << (a <= b) << std::endl;
+    std::cout << a << " >= " << b << " : " << (a >= b) << std::endl;
+    std::cout << a << " == " << b << " : " << (a == b) << std::endl;
+    std::cout << a << " != " << b << " : " << (a != b) << std::endl;
+    std::cout << std::noboolalpha;
+
+    // Test arithmetic operators
+    std::cout << b << " + " << c << " : " << b + c << std::endl;
+    std::cout << b << " - " << c << " : " << b - c << std::endl;
+    std::cout << b << " * " << c << " : " << b * c << std::endl;
+    std::cout << b << " / " << c << " : " << b / c << std::endl;
+
+    // Test increment and decrement operators
+    Fixed i(10.1f);
+    std::cout << "value of i: " << i++ << std::endl;
+    std::cout << "value of i (after post-increment i++): " << i++ << std::endl;
+	std::cout << "value of i (after post-increment i++): " << i << std::endl;
+    std::cout << "value of i (pre-increment ++i): " << ++i << std::endl;
+    std::cout << "value of i: " << i << std::endl;
+    std::cout << "value of i (after post-decrement i--): " << i-- << std::endl;
+    std::cout << "value of i (pre-decrement --i): " << --i << std::endl;
+    std::cout << "final value of i: " << i << std::endl;
+
+    // Test static min and max functions
+    Fixed j(5.5f);
+    Fixed k(7.69922f);  // Adjusted value for precision
+    std::cout << "min(" << j << ", " << k << "): " << Fixed::min(j, k) << std::endl;
+    std::cout << "max(" << j << ", " << k << "): " << Fixed::max(j, k) << std::endl;
+
+    return 0;
 }
-
-// int main( void )
-// {
-//     {
-//         Fixed a;
-//         Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
-//         std::cout << a << std::endl;
-//         std::cout << ++a << std::endl;
-//         std::cout << a << std::endl;
-//         std::cout << a++ << std::endl;
-//         std::cout << a << std::endl;
-//         std::cout << b << std::endl;
-//         std::cout << Fixed::max( a, b ) << std::endl;
-//     }
-//     std::cout << "----My tests---" << std::endl;
-//     {
-//         std::cout << "Decrement" << std::endl;
-//         Fixed g(10);
-//         std::cout <<  g << std::endl;
-//         std::cout << --g << std::endl;
-//         std::cout << g << std::endl;
-//         std::cout << g-- << std::endl;
-//         std::cout << g << std::endl;
-//     }
-//     {
-//         std::cout << "min and max" << std::endl;
-//         Fixed a;
-//         Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
-//         std::cout << b << std::endl;
-//         std::cout << Fixed::max(a, b) << std::endl;
-//         Fixed const c(3.5f);
-//         Fixed const d(4.5f);
-//         std::cout << Fixed::max(c, d) << std::endl;
-//         Fixed e(2.5f);
-//         Fixed f(1.5f);
-//         std::cout << Fixed::min(e, f) << std::endl;
-//         std::cout << Fixed::min(c, d) << std::endl;
-//     }
-//     {
-//         Fixed b, c, d;
-//         b.setRawBits(42);
-//         c.setRawBits(10);
-
-//         std::cout << "Comparisons" << std::endl;
-//         std::cout << (b > c) << std::endl;
-//         std::cout << (b < c) << std::endl;
-//         c.setRawBits(42);
-//         std::cout << (b <= c) << std::endl;
-//         std::cout << (b >= c) << std::endl;
-//         b.setRawBits(100);
-//         std::cout << (b == c) << std::endl;
-//         std::cout << (c == c) << std::endl;
-//         std::cout << (b != c) << std::endl;
-
-//         std::cout << "Arithmetic" << std::endl;
-//         std::cout << b + c << std::endl;
-//         d = b - c;
-//         std::cout << d << std::endl;
-//         std::cout << b * c << std::endl;
-//         try 
-//         {
-//             std::cout << b / c << std::endl;
-//             d = b / c;
-//             c.setRawBits(0);
-//             throw (0);
-//             std::cout << b / c << std::endl;
-//         }
-//         catch (int num)
-//         {
-//             std::cout << "Denominator cannot be 0" << std::endl;
-//         }
-
-//         return 0;
-//     }
-// }
