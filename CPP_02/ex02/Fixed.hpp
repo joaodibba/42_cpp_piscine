@@ -39,7 +39,6 @@ public:
 	Fixed	&operator--();
 	Fixed	operator--(int);
 
-	// Static functions
 	static Fixed	&min(Fixed &a, Fixed &b);
 	static Fixed	&max(Fixed &a, Fixed &b);
 	static const Fixed	&min(const Fixed &a, const Fixed &b);

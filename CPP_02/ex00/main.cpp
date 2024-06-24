@@ -12,5 +12,6 @@ int main()
 			<< a.getRawBits() << std::endl
 			<< b.getRawBits() << std::endl
 			<< c.getRawBits() << std::endl;
+
 	return (0);
 }

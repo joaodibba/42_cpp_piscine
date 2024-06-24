@@ -21,10 +21,9 @@ Fixed::Fixed(const float value)
 }
 
 // Copy constructor
-Fixed::Fixed(const Fixed &fixed) 
+Fixed::Fixed(const Fixed &fixed) : _fixedPointValue(fixed._fixedPointValue)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	*this = fixed;
 }
 
 // Destructor
@@ -65,7 +64,6 @@ float Fixed::toFloat(void) const
 {
 	return (static_cast<float>(_fixedPointValue) / (1 << _fractionalBits));
 }
-
 
 // "Greater than" operator
 // Returns true if the value on the left is greater than the value on the right,
