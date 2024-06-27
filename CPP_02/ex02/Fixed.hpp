@@ -22,7 +22,6 @@ public:
 	int		toInt(void) const; // Returns the fixed point number as an int
 	float	toFloat(void) const; // Returns the fixed point number as a float
 
-	// Comparison operators
 	bool	operator>(const Fixed &fixed) const;
 	bool	operator<(const Fixed &fixed) const;
 	bool	operator>=(const Fixed &fixed) const;
@@ -30,19 +29,16 @@ public:
 	bool	operator==(const Fixed &fixed) const;
 	bool	operator!=(const Fixed &fixed) const;
 
-	// Arithmetic operators
 	Fixed	operator+(const Fixed &fixed) const;
 	Fixed	operator-(const Fixed &fixed) const;
 	Fixed	operator*(const Fixed &fixed) const;
 	Fixed	operator/(const Fixed &fixed) const;
 
-	// Increment and decrement operators
-	Fixed	&operator++(); // Pre-increment
-	Fixed	operator++(int); // Post-increment
-	Fixed	&operator--(); // Pre-decrement
-	Fixed	operator--(int); // Post-decrement
+	Fixed	&operator++();
+	Fixed	operator++(int);
+	Fixed	&operator--();
+	Fixed	operator--(int);
 
-	// Static functions
 	static Fixed	&min(Fixed &a, Fixed &b);
 	static Fixed	&max(Fixed &a, Fixed &b);
 	static const Fixed	&min(const Fixed &a, const Fixed &b);
