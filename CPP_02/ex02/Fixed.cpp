@@ -47,19 +47,16 @@ int Fixed::getRawBits(void) const
 	return (_fixedPointValue);
 }
 
-// Sets the raw value of the Fixed point number
 void Fixed::setRawBits(const int raw) 
 {
 	_fixedPointValue = raw;
 }
 
-// Convert the Fixed point number to an integer
 int Fixed::toInt(void) const 
 {
 	return (_fixedPointValue >> _fractionalBits);
 }
 
-// Convert the Fixed point number to a float
 float Fixed::toFloat(void) const 
 {
 	return (static_cast<float>(_fixedPointValue) / (1 << _fractionalBits));
@@ -167,19 +164,17 @@ Fixed Fixed::operator--(int)
 	return (tmp);
 }
 
-// Minimum of two Fixed numbers (non-const version)
+// Static functions
 Fixed &Fixed::min(Fixed &a, Fixed &b) 
 {
 	return (a < b ? a : b);
 }
 
-// Maximum of two Fixed numbers (non-const version)
 Fixed &Fixed::max(Fixed &a, Fixed &b) 
 {
 	return (a > b ? a : b);
 }
 
-// Minimum of two Fixed numbers (const version)
 const Fixed &Fixed::min(const Fixed &a, const Fixed &b) 
 {
 	return (a < b ? a : b);
