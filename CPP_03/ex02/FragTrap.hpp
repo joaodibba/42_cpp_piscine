@@ -5,19 +5,18 @@
 
 class FragTrap : public ClapTrap
 {
-	private:
-		FragTrap(); // private constructor
 
-	public:
-		FragTrap(std::string name); // constructor
-		FragTrap(const FragTrap& copy); // copy constructor
-		~FragTrap(); // destructor
-		FragTrap& operator=(const FragTrap& copy); // assignation operator
+protected:
+	// protected so that derived classes can access them but cannot be instantiated directly
+	FragTrap();
+public:
+	FragTrap(std::string name);
+	FragTrap(const FragTrap& copy);
+	~FragTrap(); // destructor
+	FragTrap& operator=(const FragTrap& right);
 
-		void highFivesGuys(void);
-		
-		void attack(std::string const& target);
-		void takeDamage(unsigned int amount);
+	void highFivesGuys(void);
+
 };
 
 #endif

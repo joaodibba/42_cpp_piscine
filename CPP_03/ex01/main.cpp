@@ -1,50 +1,57 @@
-#include <iostream>
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include <iostream>
+#include <cstdlib> 
 
-void put_line(bool nl)
-{
-    std::cout << GREEN << "**************************************************" << RESET << std::endl;
-    if (nl)
-        std::cout << std::endl;
-}
+int main() {
+	std::cout << "--- ClapTrap vs ScavTrap Fight ---" << std::endl;
+	{
 
-int main() //TODO: this ex does not compile
-{
-    ScavTrap bro("bro");
-    ScavTrap dude("dude");
+		// Create one ClapTrap and one ScavTrap instance
+		ClapTrap clap("CL4P-TP");
+		ScavTrap scav("SC4V-TP");
 
-    dude.guardGate();
-    std::cout << std::endl;
-    for (int i = 0; i < 6; i++)
-    {
-        put_line(false);
-        bro.attack("dude");
-        if (bro.getEnergyPoints() > 0)
-            dude.takeDamage(bro.getAttackDamage());
-        if (dude.getHitPoints() <= 0)
-        {
-            put_line(true);
-            break ;
-        }
-        if (i && i % 3 == 0)
-            bro.beRepaired(i * 5);
+		std::cout << "\n--- Initial Stats ---" << std::endl;
 
-        dude.attack("bro");
-        if (dude.getEnergyPoints() > 0)
-            bro.takeDamage(dude.getAttackDamage());
-         if (bro.getHitPoints() <= 0)
-        {
-            put_line(true);
-            break ;
-        }
-        if (i && i % 2 == 0)
-            dude.beRepaired(i * 5);
+		std::cout << clap.getName() << " has " << clap.getHitPoints() << " hit points, "
+				  << clap.getEnergyPoints() << " energy points and " 
+				  << clap.getAttackDamage() << " attack damage." << std::endl;
+		std::cout << scav.getName() << " has " << scav.getHitPoints() << " hit points, "
+				  << scav.getEnergyPoints() << " energy points and "
+				  << scav.getAttackDamage() << " attack damage." << std::endl;
 
-        std::cout   << GREEN << ">>>>>>>>>>>>>>>>>> " << PURPLE << "ROUND " << (i + 1) << " RESULT"
-                    << GREEN << " <<<<<<<<<<<<<<<<<<" << RESET << std::endl;
-        bro.roundResult();
-        dude.roundResult();
-        put_line(true);
-    }
+		std::cout << "\n--- Fight Begins ---" << std::endl;
+
+		while (clap.getHitPoints() > 0 && scav.getHitPoints() > 0) {
+			if (rand() % 2 == 0) {
+				if (clap.getEnergyPoints() > 0) {
+					clap.attack(scav.getName());
+					scav.takeDamage(clap.getAttackDamage());
+				}
+			} else {
+				if (scav.getEnergyPoints() > 0) {
+					scav.attack(clap.getName());
+					clap.takeDamage(scav.getAttackDamage());
+				}
+			}
+
+			std::cout << "\n--- Current Stats ---" << std::endl;
+
+			std::cout << clap.getName() << " has " << clap.getHitPoints() << " hit points, "
+					  << clap.getEnergyPoints() << " energy points." << std::endl;
+			std::cout << scav.getName() << " has " << scav.getHitPoints() << " hit points, "
+					  << scav.getEnergyPoints() << " energy points." << std::endl;
+		}
+
+		scav.guardGate();
+
+		std::cout << "\n--- Fight Over ---" << std::endl;
+
+		if (clap.getHitPoints() > 0) {
+			std::cout << clap.getName() << " wins." << std::endl;
+		} else {
+			std::cout << scav.getName() << " wins." << std::endl;
+		}
+	}
+	return 0;
 }

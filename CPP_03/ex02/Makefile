@@ -1,7 +1,8 @@
-NAME = DiamondTrap #TODO: change this
+NAME = FragTrap
 CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
 SRC =	ClapTrap.cpp \
+		ScavTrap.cpp \
 		FragTrap.cpp \
 		main.cpp
 OBJ = $(SRC:%.cpp=obj/%.o)

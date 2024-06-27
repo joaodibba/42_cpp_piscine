@@ -1,50 +1,58 @@
-#include <iostream>
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include <iostream>
+#include <cstdlib>
 
-void put_line(bool nl)
-{
-    std::cout << GREEN << "**************************************************" << RESET << std::endl;
-    if (nl)
-        std::cout << std::endl;
-}
-
-int main() // TODO: you need to have ScavTrap files in this directory too. 
-{
-    ScavTrap bro("bro"); // TODO: this main is not for this exercise
-    ScavTrap dude("dude");
-
-    dude.guardGate();
-    std::cout << std::endl;
-    for (int i = 0; i < 6; i++)
+int main() {
+    std::cout << "--- ScavTrap vs FragTrap Fight ---" << std::endl;
     {
-        put_line(false);
-        bro.attack("dude");
-        if (bro.getEnergyPoints() > 0)
-            dude.takeDamage(bro.getAttackDamage());
-        if (dude.getHitPoints() <= 0)
-        {
-            put_line(true);
-            break ;
-        }
-        if (i && i % 3 == 0)
-            bro.beRepaired(i * 5);
 
-        dude.attack("bro");
-        if (dude.getEnergyPoints() > 0)
-            bro.takeDamage(dude.getAttackDamage());
-         if (bro.getHitPoints() <= 0)
-        {
-            put_line(true);
-            break ;
-        }
-        if (i && i % 2 == 0)
-            dude.beRepaired(i * 5);
+        // Create one ScavTrap and one FragTrap instance
+        ScavTrap scav("SC4V-TP");
+        FragTrap frag("FR4G-TP");
 
-        std::cout   << GREEN << ">>>>>>>>>>>>>>>>>> " << PURPLE << "ROUND " << (i + 1) << " RESULT"
-                    << GREEN << " <<<<<<<<<<<<<<<<<<" << RESET << std::endl;
-        bro.roundResult();
-        dude.roundResult();
-        put_line(true);
+        std::cout << "\n--- Initial Stats ---" << std::endl;
+
+        std::cout << scav.getName() << " has " << scav.getHitPoints() << " hit points, "
+                  << scav.getEnergyPoints() << " energy points and "
+                  << scav.getAttackDamage() << " attack damage." << std::endl;
+        std::cout << frag.getName() << " has " << frag.getHitPoints() << " hit points, "
+                  << frag.getEnergyPoints() << " energy points and "
+                  << frag.getAttackDamage() << " attack damage." << std::endl;
+
+        std::cout << "\n--- Fight Begins ---" << std::endl;
+
+        while (scav.getHitPoints() > 0 && frag.getHitPoints() > 0) {
+            if (rand() % 2 == 0) {
+                if (scav.getEnergyPoints() > 0) {
+                    scav.attack(frag.getName());
+                    frag.takeDamage(scav.getAttackDamage());
+                }
+            } else {
+                if (frag.getEnergyPoints() > 0) {
+                    frag.attack(scav.getName());
+                    scav.takeDamage(frag.getAttackDamage());
+                }
+            }
+
+            std::cout << "\n--- Current Stats ---" << std::endl;
+
+            std::cout << scav.getName() << " has " << scav.getHitPoints() << " hit points, "
+                      << scav.getEnergyPoints() << " energy points." << std::endl;
+            std::cout << frag.getName() << " has " << frag.getHitPoints() << " hit points, "
+                      << frag.getEnergyPoints() << " energy points." << std::endl;
+        }
+
+        scav.guardGate();
+
+        std::cout << "\n--- Fight Over ---" << std::endl;
+
+        if (scav.getHitPoints() > 0) {
+            std::cout << scav.getName() << " wins." << std::endl;
+        } else {
+            std::cout << frag.getName() << " wins." << std::endl;
+        }
     }
+    return 0;
 }

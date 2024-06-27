@@ -1,37 +1,35 @@
 #include "ClapTrap.hpp"
+#include <iostream>
 
-void put_line(bool nl)
-{
-    std::cout << GREEN << "**************************************************" << RESET << std::endl;
-    if (nl)
-        std::cout << std::endl;
-}
-
-int main()
-{
-    ClapTrap bro("bro");
-    ClapTrap dude("dude");
-
-    std::cout << std::endl;
-    for (int i = 0; i < 11; i++)
+int main() {
+    std::cout << "--- ClapTrap Fight ---" << std::endl;
     {
-        put_line(false);
-        bro.attack("dude");
-        if (bro.getEnergyPoints() > 0)
-            dude.takeDamage(bro.getAttackDamage());
-        if (i && i % 4 == 0)
-            bro.beRepaired(i);
+        // Create two ClapTrap instances with zero attack damage
+        ClapTrap clap1("CL4P-TP1");
+        ClapTrap clap2("CL4P-TP2");
 
-        dude.attack("bro");
-        if (dude.getEnergyPoints() > 0)
-            bro.takeDamage(dude.getAttackDamage());
-        if (i && i % 8 == 0)
-            dude.beRepaired(i);
+        std::cout << "\n--- Initial Stats ---" << std::endl;
 
-        std::cout   << GREEN << ">>>>>>>>>>>>>>>>>> " << PURPLE << "ROUND " << (i + 1) << " RESULT"
-                    << GREEN << " <<<<<<<<<<<<<<<<<<" << RESET << std::endl;
-        bro.roundResult();
-        dude.roundResult();
-        put_line(true);
+        std::cout << clap1.getName() << " has " << clap1.getHitPoints() << " hit points, "
+                  << clap1.getEnergyPoints() << " energy points and " 
+                  << clap1.getAttackDamage() << " attack damage." << std::endl;
+        std::cout << clap2.getName() << " has " << clap2.getHitPoints() << " hit points, "
+                  << clap2.getEnergyPoints() << " energy points and "
+                  << clap2.getAttackDamage() << " attack damage." << std::endl;
+
+        std::cout << "\n--- Fight Begins ---" << std::endl;
+
+        clap1.attack(clap2.getName());
+        clap2.takeDamage(clap1.getAttackDamage());
+
+        clap2.attack(clap1.getName());
+        clap1.takeDamage(clap2.getAttackDamage());
+
+        std::cout << clap1.getName() << " has " << clap1.getHitPoints() << " hit points, "
+                  << clap1.getEnergyPoints() << " energy points." << std::endl;
+        std::cout << clap2.getName() << " has " << clap2.getHitPoints() << " hit points, "
+                  << clap2.getEnergyPoints() << " energy points." << std::endl;
     }
+    std::cout << "\n--- Fight Over ---" << std::endl;
+    return 0;
 }
