@@ -6,15 +6,19 @@
 
 class Cat : public AAnimal
 {
-	private:
-		Brain *brain;
-	public:
-		Cat();
-		Cat(const Cat &cat);
-		Cat &operator=(const Cat &cat);
-		virtual ~Cat();
-		virtual void makeSound() const;
-		Brain *getBrain() const;
+
+private:
+	Brain *brain;
+
+public:
+	Cat();
+	Cat(const Cat &other);
+	virtual ~Cat();
+	Cat &operator=(const Cat &right);
+
+	virtual void makeSound() const;
+	virtual Brain *getBrain() const;
+
 };
 
 #endif

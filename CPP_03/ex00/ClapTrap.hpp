@@ -6,14 +6,11 @@
 class ClapTrap
 {
 
-protected:
-	// Protected attributes to allow derived classes to access 
-	// them but not allow direct access from outside the class hierarchy
+private:
 	std::string			_name;
 	unsigned int		_hitPoints;
 	unsigned int		_energyPoints;
 	unsigned int		_attackDamage;
-	// Protected constructor to prevent instantiation of ClapTrap without a name
 	ClapTrap();
 public:
 	ClapTrap(std::string name);

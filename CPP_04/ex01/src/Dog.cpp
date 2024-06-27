@@ -1,37 +1,17 @@
 #include "../includes/Dog.hpp"
 
-Dog::Dog() : Animal("Dog")
+Dog::Dog() : Animal()
 {
-	std::cout << "Dog default constructor called" << std::endl;
+	_type = "Dog";
 	brain = new Brain();
+	std::cout << "Dog default constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog &dog) : Animal(dog), brain(NULL)
+Dog::Dog(const Dog &other) : Animal()
 {
-	*this = dog;
-}
-
-// Dog &Dog::operator=(const Dog &dog)
-// {
-// 	if (this != &dog)
-// 	{
-// 		this->Animal::operator=(dog);
-// 		if (brain)
-// 			delete brain;
-// 		brain = new Brain(*dog.brain);
-// 	}
-// 	return *this;
-// }
-
-Dog &Dog::operator=(const Dog &other)
-{
-    if (this == &other)
-        return (*this);
-    this->Animal::operator=(other);
-    if (this->brain)
-        delete this->brain;
-    this->brain = new Brain(*other.brain);
-    return (*this);
+	_type = other._type;
+	brain = new Brain(*other.brain);
+	std::cout << "Dog copy constructor called" << std::endl;
 }
 
 Dog::~Dog()
@@ -40,12 +20,24 @@ Dog::~Dog()
 	std::cout << "Dog destructor called" << std::endl;
 }
 
+Dog &Dog::operator=(const Dog &right)
+{
+    if (this == &right)
+        return (*this);
+    this->Animal::operator=(right);
+    if (brain)
+        delete brain;
+    this->brain = new Brain(*right.brain);
+	std::cout << "Dog assignation operator called" << std::endl;
+    return (*this);
+}
+
 void Dog::makeSound() const
 {
-	std::cout << this->type << ": " << "Woof Woof!" << std::endl;
+	std::cout << _type << ": " << "Woof Woof!" << std::endl;
 }
 
 Brain *Dog::getBrain() const
 {
-	return brain;
+	return (brain);
 }

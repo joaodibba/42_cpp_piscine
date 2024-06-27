@@ -25,6 +25,11 @@ Animal &Animal::operator=(const Animal &right)
 	return( *this);
 }
 
+void Animal::makeSound() const
+{
+	std::cout << _type << ": " << "Animalistic sounds!" << std::endl;
+}
+
 std::string Animal::getType() const
 {
 	return (_type);

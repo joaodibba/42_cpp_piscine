@@ -8,15 +8,16 @@
 
 class Brain
 {
-	private:
-		std::string ideas[MAX_IDEAS];
-	public:
-		Brain();
-		Brain(const Brain &brain);
-		Brain &operator=(const Brain &brain);
-		~Brain();
-		std::string getIdea(int index) const;
-		void setIdea(int index, std::string idea);
+private:
+	std::string ideas[MAX_IDEAS];
+public:
+	Brain();
+	Brain(const Brain &other);
+	~Brain();
+	Brain &operator=(const Brain &right);
+
+	std::string getIdea(int index) const;
+	void setIdea(int index, std::string idea);
 };
 
 #endif

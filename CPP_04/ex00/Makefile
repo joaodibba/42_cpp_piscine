@@ -1,20 +1,21 @@
 NAME = PolymorphicZoo
 CXX = c++
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRC =	main.cpp \
-		Animal.cpp \
-		Dog.cpp \
-		Cat.cpp \
-		WrongAnimal.cpp \
-		WrongCat.cpp
-OBJ = $(SRC:%.cpp=obj/%.o)
+CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -fsanitize=address
+SRC =	src/main.cpp \
+		src/Animal.cpp \
+		src/Dog.cpp \
+		src/Cat.cpp \
+		src/WrongAnimal.cpp \
+		src/WrongCat.cpp
+
+OBJ = $(SRC:src/%.cpp=obj/%.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CXX) $(CXXFLAGS) -o $@ $^
 
-obj/%.o: %.cpp
+obj/%.o: src/%.cpp
 	@mkdir -p obj
 	@$(CXX) $(CXXFLAGS) -c -o $@ $<
 
