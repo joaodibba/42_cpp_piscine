@@ -21,7 +21,7 @@ Dog::~Dog()
 Dog &Dog::operator=(const Dog &right)
 {
     if (this == &right)
-        return (*this);
+		return (*this);
 	AAnimal::operator=(right);
 	_type = right._type;
     delete brain;

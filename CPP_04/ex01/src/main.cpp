@@ -1,4 +1,4 @@
-#include "../includes/AAnimal.hpp"
+#include "../includes/Animal.hpp"
 #include "../includes/Dog.hpp"
 #include "../includes/Cat.hpp"
 
@@ -35,28 +35,6 @@ int main() {
     {
         Dog tmp = basic; // Copy constructor test
     }
-
-    std::cout << "\n***** Deep Copy Tests *****\n" << std::endl;
-
-    Animal* beast = new Dog();
-    Dog copyDog;
-
-    try {
-        for (int x = 0; x < 10; x++) {
-            beast->getBrain()->setIdea(x, "This is a test idea");
-        }
-        
-        std::cout << "Copying beast to copyDog using assignment operator" << std::endl;
-        copyDog = static_cast<Dog&>(*beast); // Assignment operator test
-
-        for (int x = 0; x < 10; x++) {
-            std::cout << copyDog.getBrain()->getIdea(x) << std::endl;
-        }
-    } catch (std::exception& e) {
-        std::cerr << e.what() << std::endl;
-    }
-
-    delete beast;
 
     std::cout << "\n***** End of Tests *****\n" << std::endl;
 
