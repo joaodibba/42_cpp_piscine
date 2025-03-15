@@ -29,7 +29,7 @@ public:
 
 	struct GradeTooHighException : public std::exception
 	{
-		virtual const char *what() const throw();
+		virtual virtual const char *what() const throw();
 	};
 
 	struct GradeTooLowException : public std::exception

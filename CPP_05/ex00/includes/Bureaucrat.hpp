@@ -10,6 +10,7 @@ private:
 	Bureaucrat();
 	std::string const _name;
 	int _grade;
+
 public:
 	Bureaucrat(std::string const name, int grade);
 	Bureaucrat(Bureaucrat const &other);

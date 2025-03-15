@@ -1,16 +1,18 @@
 #ifndef FORM_HPP
-# define FORM_HPP
+#define FORM_HPP
 
-# include <iostream>
-# include <string>
+#include <iostream>
+#include <string>
 
-class Form{
+class Form
+{
 private:
 	Form();
 	std::string const _name;
 	bool _signed;
 	int const _gradeToSign;
 	int const _gradeToExecute;
+
 public:
 	Form(std::string const name, int gradeToSign, int gradeToExecute);
 	Form(Form const &other);
@@ -34,5 +36,7 @@ public:
 		virtual const char *what() const throw();
 	};
 };
+
+std::ostream &operator<<(std::ostream &out, Form const &form);
 
 #endif

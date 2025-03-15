@@ -1,6 +1,6 @@
 #include "../includes/Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(){}
+Bureaucrat::Bureaucrat() {}
 
 Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name), _grade(grade)
 {
@@ -64,4 +64,3 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return "Grade is too low";
 }
-

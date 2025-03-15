@@ -2,11 +2,11 @@
 
 set -euo pipefail
 
-IMAGE_NAME="valgrind_temp"
-CONTAINER_NAME="valgrind_temp"
-DEPENDENCIES="g++ valgrind make"
+IMAGE_NAME="valgrind_tmp"
+CONTAINER_NAME="valgrind_tmp"
+DEPENDENCIES="g++ valgrind make tree vim"
 BASE_IMAGE="ubuntu:20.04"
-WORK_DIR="/home/cpp"
+WORK_DIR="/tmp/cpp"
 
 if [[ "$(docker images -q $IMAGE_NAME 2> /dev/null)" == "" ]]; then
     echo "Image $IMAGE_NAME does not exist. Building it..."

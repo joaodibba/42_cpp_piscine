@@ -10,7 +10,7 @@ Form::Form(std::string const name, int gradeToSign, int gradeToExecute) : _name(
 
 Form::Form(Form const &other) : _name(other._name), _signed(other._signed), _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute) {}
 
-Form &Form::operator=(Form const &other) 
+Form &Form::operator=(Form const &other)
 {
 	if (this != &other)
 		_signed = other._signed;
@@ -41,7 +41,8 @@ int Form::getGradeToExecute() const
 
 void Form::beSigned()
 {
-	_signed = true;
+	if (!_signed)
+		_signed = true;
 }
 
 void Form::checkGrade(int grade) const

@@ -3,7 +3,7 @@
 
 # include <iostream>
 # include <string>
-# include "Bureaucrat.hpp" 
+# include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
@@ -33,12 +33,12 @@ public:
 
 	struct GradeTooHighException : public std::exception
 	{
-		virtual const char *what() const throw();
+		virtual char *what() const throw();
 	};
 
 	struct GradeTooLowException : public std::exception
 	{
-		virtual const char *what() const throw();
+		virtual char *what() const throw();
 	};
 	struct FormNotSignedException : public std::exception
 	{
