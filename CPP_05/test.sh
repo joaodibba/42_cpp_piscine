@@ -24,7 +24,7 @@ for dir in "$BASE_DIR"/ex0*; do
             executable=$(find . -maxdepth 1 -type f -executable | grep -vE '\.o$|\.cpp$|\.hpp$|Makefile')
             if [ -n "$executable" ]; then
                 echo "Running $executable with valgrind..."
-                valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose "$executable"
+                valgrind --leak-check=full --show-leak-kinds=all "$executable"
             else
                 echo "No executable found in $dir."
             fi

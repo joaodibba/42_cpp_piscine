@@ -7,7 +7,7 @@ int main()
 		std::cout << "Test 00: Should not throw exception" << std::endl;
 		Bureaucrat John("John", 15);
 		std::cout << John;
-		for (int i = 0; i <= 15; i++)
+		for (int i = 0; i < 14; i++)
 		{
 			John.incrementGrade();
 			std::cout << John;
@@ -46,6 +46,7 @@ int main()
 	{
 		std::cout << "Test 02: Should throw exception" << std::endl;
 		Bureaucrat edgeCaseHigh("Max", 1);
+		std::cout << edgeCaseHigh;
 		edgeCaseHigh.incrementGrade();
 	}
 	catch (std::exception &e)
@@ -61,6 +62,7 @@ int main()
 	{
 		std::cout << "Test 03: Should throw exception" << std::endl;
 		Bureaucrat edgeCaseLow("Min", 150);
+		std::cout << edgeCaseLow;
 		edgeCaseLow.decrementGrade();
 	}
 	catch (std::exception &e)

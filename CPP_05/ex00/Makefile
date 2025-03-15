@@ -1,6 +1,6 @@
 NAME = Bureaucrat
 CXX = c++
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
+CXXFLAGS = -std=c++98 -g -Wall -Wextra -Werror
 SRC =	src/main.cpp \
 		src/Bureaucrat.cpp
 
