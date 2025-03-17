@@ -24,6 +24,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -f ShrubberyCreationForm_shrubbery
 
 re: fclean all
 
