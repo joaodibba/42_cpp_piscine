@@ -1,6 +1,7 @@
 #include "../includes/ScalarConverter.hpp"
 #include <iostream>
 #include <climits>
+#include <cfloat>
 #include <cctype>
 #include <cmath>
 #include <string>
@@ -88,7 +89,7 @@ bool isFloatLiteral(const std::string &literal)
         char *end;
         float value = std::strtof(trimmed_literal.c_str(), &end);
 
-        return (*end == '\0' && value != HUGE_VALF && value != -HUGE_VALF);
+        return (*end == '\0' && value <= FLT_MAX && value >= FLT_MIN);
     }
 
     return false;
@@ -98,7 +99,7 @@ bool isDoubleLiteral(const std::string &literal)
 {
     char *end;
     double value = std::strtod(literal.c_str(), &end);
-    return (*end == '\0' && value != HUGE_VAL && value != -HUGE_VAL);
+    return (*end == '\0' && value <= DBL_MAX && value >= DBL_MIN);
 }
 
 bool isPseudoLiteral(const std::string &literal)
