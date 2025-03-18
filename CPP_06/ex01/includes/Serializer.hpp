@@ -10,7 +10,6 @@ struct Data {
     float value;
 };
 
-
 class Serializer
 {
 private:
