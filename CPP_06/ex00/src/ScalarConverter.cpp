@@ -56,6 +56,7 @@ void printInt(double value)
 
 void printFloat(float value)
 {
+    std::cout << std::fixed << std::setprecision(1);
     if (std::isnan(value) || std::isinf(value) || value < -std::numeric_limits<float>::max() || value > std::numeric_limits<float>::max())
         std::cout << "float: impossible" << std::endl;
     else
@@ -64,6 +65,7 @@ void printFloat(float value)
 
 void printDouble(double value)
 {
+    std::cout << std::fixed << std::setprecision(1);
     if (std::isnan(value) || std::isinf(value) || value < -std::numeric_limits<double>::max() || value > std::numeric_limits<double>::max())
         std::cout << "double: impossible" << std::endl;
     else
@@ -72,33 +74,74 @@ void printDouble(double value)
 
 bool isIntLiteral(const std::string &literal)
 {
+    if (literal.empty())
+        return false;
     char *end;
     long value = std::strtol(literal.c_str(), &end, 10);
     return (*end == '\0' && value <= INT_MAX && value >= INT_MIN);
 }
 
-bool isFloatLiteral(const std::string &literal)
+bool isFloatLiteral(const std::string &str)
 {
-    if (literal.empty())
+    bool hasDecimal = false, hasExponent = false;
+    size_t i = 0;
+
+    if (str.empty() || str.size() == 1)
         return false;
-
-    if (literal[literal.length() - 1] == 'f' || literal[literal.length() - 1] == 'F')
+    for (size_t i = 0; i < str.size(); i++)
     {
-        std::string trimmed_literal = literal.substr(0, literal.length() - 1);
-
-        char *end;
-        float value = std::strtof(trimmed_literal.c_str(), &end);
-
-        return (*end == '\0' && value <= FLT_MAX && value >= FLT_MIN);
+        if (!std::isdigit(str[i]) && str[i] != '.' && str[i] != 'e' && str[i] != 'E' && str[i] != '+' && str[i] != '-' && str[i] != 'f' && str[i] != 'F')
+        {
+            return false;
+        }
     }
-
-    return false;
+    if (str[0] == '+' || str[0] == '-')
+        i = 1;
+    for (; i < str.size(); i++)
+    {
+        if (str[i] == '.')
+        {
+            if (hasDecimal || hasExponent)
+                return false;
+            hasDecimal = true;
+        }
+        else if (str[i] == 'e' || str[i] == 'E')
+        {
+            if (hasExponent)
+                return false;
+            hasExponent = true;
+            if (i + 1 < str.size() && (str[i + 1] == '+' || str[i + 1] == '-'))
+                i++;
+        }
+    }
+    return true;
 }
 
 bool isDoubleLiteral(const std::string &literal)
 {
+    if (literal.empty())
+        return false;
+
+    size_t i = 0;
+
+    while (i < literal.length() && std::isspace(literal[i]))
+    {
+        i++;
+    }
+
+    if (i < literal.length() && (literal[i] == '+' || literal[i] == '-'))
+    {
+        i++;
+    }
+
+    if (i == literal.length() || !std::isdigit(literal[i]))
+    {
+        return false;
+    }
+
     char *end;
-    double value = std::strtod(literal.c_str(), &end);
+    double value = std::strtod(literal.c_str() + i, &end);
+
     return (*end == '\0' && value <= DBL_MAX && value >= DBL_MIN);
 }
 
@@ -124,8 +167,6 @@ void ScalarConverter::convert(const std::string &literal)
         std::cout << "Error: Empty literal" << std::endl;
         return;
     }
-
-    std::cout << std::fixed << std::setprecision(1);
 
     if (isPseudoLiteral(literal))
         printPseudoLiteral(literal);
