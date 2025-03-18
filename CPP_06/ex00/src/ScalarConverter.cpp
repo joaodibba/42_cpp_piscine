@@ -1,6 +1,6 @@
 #include "../includes/ScalarConverter.hpp"
 #include <iostream>
-#include <limits>
+#include <climits>
 #include <cctype>
 #include <cmath>
 #include <string>
@@ -71,41 +71,34 @@ void printDouble(double value)
 
 bool isIntLiteral(const std::string &literal)
 {
-    try
-    {
-        std::stoi(literal);
-    }
-    catch (const std::exception &e)
-    {
-        return false;
-    }
-    return true;
+    char *end;
+    long value = std::strtol(literal.c_str(), &end, 10);
+    return (*end == '\0' && value <= INT_MAX && value >= INT_MIN);
 }
 
 bool isFloatLiteral(const std::string &literal)
 {
-    try
-    {
-        std::stof(literal);
-    }
-    catch (const std::exception &e)
-    {
+    if (literal.empty())
         return false;
+
+    if (literal[literal.length() - 1] == 'f' || literal[literal.length() - 1] == 'F')
+    {
+        std::string trimmed_literal = literal.substr(0, literal.length() - 1);
+
+        char *end;
+        float value = std::strtof(trimmed_literal.c_str(), &end);
+
+        return (*end == '\0' && value != HUGE_VALF && value != -HUGE_VALF);
     }
-    return true;
+
+    return false;
 }
 
 bool isDoubleLiteral(const std::string &literal)
 {
-    try
-    {
-        std::stod(literal);
-    }
-    catch (const std::exception &e)
-    {
-        return false;
-    }
-    return true;
+    char *end;
+    double value = std::strtod(literal.c_str(), &end);
+    return (*end == '\0' && value != HUGE_VAL && value != -HUGE_VAL);
 }
 
 bool isPseudoLiteral(const std::string &literal)
@@ -115,19 +108,11 @@ bool isPseudoLiteral(const std::string &literal)
 
 void printPseudoLiteral(const std::string &literal)
 {
-    try
-    {
-        double value = std::strtod(literal.c_str(), nullptr);
-        std::cout << "char: impossible" << std::endl;
-        std::cout << "int: impossible" << std::endl;
-        std::cout << "float: " << static_cast<float>(value) << "f" << std::endl;
-        std::cout << "double: " << value << std::endl;
-    }
-    catch (const std::exception &e)
-    {
-        std::cout << "Error: Invalid literal" << std::endl;
-        return;
-    }
+    double value = std::strtod(literal.c_str(), NULL);
+    std::cout << "char: impossible" << std::endl;
+    std::cout << "int: impossible" << std::endl;
+    std::cout << "float: " << static_cast<float>(value) << "f" << std::endl;
+    std::cout << "double: " << value << std::endl;
 }
 
 void ScalarConverter::convert(const std::string &literal)
@@ -153,7 +138,7 @@ void ScalarConverter::convert(const std::string &literal)
     }
     else if (isIntLiteral(literal))
     {
-        int value = std::stoi(literal);
+        int value = std::strtol(literal.c_str(), NULL, 10);
         printChar(value);
         printInt(static_cast<int>(value));
         printFloat(static_cast<float>(value));
@@ -161,7 +146,7 @@ void ScalarConverter::convert(const std::string &literal)
     }
     else if (isDoubleLiteral(literal))
     {
-        double value = std::stod(literal);
+        double value = std::strtod(literal.c_str(), NULL);
         printChar(value);
         printInt(value);
         printFloat(static_cast<float>(value));
@@ -169,7 +154,7 @@ void ScalarConverter::convert(const std::string &literal)
     }
     else if (isFloatLiteral(literal))
     {
-        float value = std::stof(literal);
+        float value = std::strtof(literal.c_str(), NULL);
         printChar(value);
         printInt(value);
         printFloat(value);
