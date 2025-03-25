@@ -61,11 +61,9 @@ void test_with_mutant_stack_basic()
     mstack.push(20);
     mstack.push(30);
     
-    // Test top and size
     std::cout << "Top element: " << mstack.top() << std::endl;  // Expected: 30
     std::cout << "Stack size: " << mstack.size() << std::endl;  // Expected: 3
     
-    // Pop and test size again
     mstack.pop();
     std::cout << "Stack size after pop: " << mstack.size() << std::endl;  // Expected: 2
 }
@@ -80,7 +78,7 @@ void test_with_mutant_stack_iterator_reverse()
     
     std::cout << "Iterating in reverse:" << std::endl;
     MutantStack<int>::iterator it = mstack.end();
-    --it;  // Points to the last element (4)
+    --it;
     
     while (it != mstack.begin()) {
         std::cout << *it << std::endl;  // Expected: 4, 3, 2
@@ -96,7 +94,7 @@ void test_with_mutant_stack_copy_constructor()
     mstack1.push(20);
     mstack1.push(30);
     
-    MutantStack<int> mstack2(mstack1);  // Copy constructor
+    MutantStack<int> mstack2(mstack1);
     
     std::cout << "Top of copied stack: " << mstack2.top() << std::endl;  // Expected: 30
     std::cout << "Size of copied stack: " << mstack2.size() << std::endl;  // Expected: 3
@@ -109,7 +107,7 @@ void test_with_mutant_stack_assignment_operator()
     mstack1.push(60);
     
     MutantStack<int> mstack2;
-    mstack2 = mstack1;  // Assignment operator
+    mstack2 = mstack1;
     
     std::cout << "Top of assigned stack: " << mstack2.top() << std::endl;  // Expected: 60
     std::cout << "Size of assigned stack: " << mstack2.size() << std::endl;  // Expected: 2
@@ -119,14 +117,12 @@ void test_with_mutant_stack_large_data()
 {
     MutantStack<int> mstack;
     
-    // Test with large number of elements
     for (int i = 1; i <= 100; ++i) {
         mstack.push(i);
     }
     
     std::cout << "Stack size after pushing 100 elements: " << mstack.size() << std::endl;  // Expected: 10000
     
-    // Test iteration over the large stack
     MutantStack<int>::iterator it = mstack.begin();
     MutantStack<int>::iterator ite = mstack.end();
     while (it != ite) {
@@ -143,7 +139,6 @@ void test_with_mutant_stack_push_pop()
     mstack.push(10);
     mstack.push(15);
     
-    // Pop and then push more elements
     mstack.pop();
     mstack.push(20);
     mstack.push(25);
