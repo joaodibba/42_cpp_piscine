@@ -9,7 +9,7 @@ int easyfind(T &container, int value)
 {
     typename T::iterator it = std::find(container.begin(), container.end(), value);
     if (it == container.end())
-        throw std::out_of_range("Value not found");
+        throw std::exception();
     return std::distance(container.begin(), it); 
 }
 

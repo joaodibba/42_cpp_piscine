@@ -3,7 +3,6 @@
 #include <vector>
 #include <deque>
 #include <list>
-#include <forward_list>
 
 int generateRandomNumber(int min = 0, int max = 4)
 {
@@ -55,14 +54,6 @@ int main()
 
         testContainer("List", l, 3);
         testContainer("List", l, 6);
-    }
-    {
-        std::forward_list<int> fl;
-        for (int i = 0; i < 5; i++)
-            fl.push_front(generateRandomNumber());
-
-        testContainer("Forward List", fl, 3);
-        testContainer("Forward List", fl, 6);
     }
 
     return 0;
