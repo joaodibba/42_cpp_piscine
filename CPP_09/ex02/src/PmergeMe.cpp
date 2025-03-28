@@ -5,7 +5,7 @@ struct Pair
     std::vector<std::pair<int, int> > pairs;
     int unpaired;
     bool unpaired_found;
-    Pair() : unpaired(-1), unpaired_found(false) {};
+    Pair() : unpaired_found(false) {};
 };
 
 struct MinMax
