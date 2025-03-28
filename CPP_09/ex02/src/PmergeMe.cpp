@@ -4,7 +4,8 @@ struct Pair
 {
     std::vector<std::pair<int, int> > pairs;
     int unpaired;
-    Pair() : unpaired(-1){};
+    bool unpaired_found;
+    Pair() : unpaired(-1), unpaired_found(false) {};
 };
 
 struct MinMax
@@ -21,8 +22,10 @@ Pair make_pairs_with_unpaired(const std::vector<int> &arr)
     for (; i + 1 < arr.size(); i += 2)
         result.pairs.push_back(std::make_pair(arr[i], arr[i + 1]));
 
-    if (arr.size() % 2 == 1)
+    if (arr.size() % 2 == 1){
         result.unpaired = arr[arr.size() - 1];
+        result.unpaired_found = true;
+    }
 
     return result;
 }
@@ -72,7 +75,7 @@ std::vector<int> PmergeMe::sort(const std::vector<int> &arr)
     std::vector<int> sorted_maxs = sort(split.maxs);
     insert_mins(sorted_maxs, split.mins);
 
-    if (pair.unpaired != -1)
+    if (pair.unpaired_found)
         binary_insert(sorted_maxs, pair.unpaired);
 
     return sorted_maxs;
