@@ -5,7 +5,7 @@ struct Pair
     std::vector<std::pair<int, int> > pairs;
     int unpaired;
     bool unpaired_found;
-    Pair() : unpaired_found(false) {};
+    Pair() : unpaired_found(false){};
 };
 
 struct MinMax
@@ -22,7 +22,8 @@ Pair make_pairs_with_unpaired(const std::vector<int> &arr)
     for (; i + 1 < arr.size(); i += 2)
         result.pairs.push_back(std::make_pair(arr[i], arr[i + 1]));
 
-    if (arr.size() % 2 == 1){
+    if (arr.size() % 2 == 1)
+    {
         result.unpaired = arr[arr.size() - 1];
         result.unpaired_found = true;
     }
