@@ -58,7 +58,7 @@ int main(int ac, char **av)
 {
     if (ac != 2)
     {
-        std::cerr << "Usage: ./btc [expression]" << std::endl;
+        std::cerr << "Usage: ./RPN [expression]" << std::endl;
         return 1;
     }
     try

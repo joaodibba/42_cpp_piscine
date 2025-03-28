@@ -61,18 +61,15 @@ bool isValidDate(const std::string &dateStr)
     t.tm_isdst = -1;
 
     time_t temp = mktime(&t);
+
+    if (temp >= std::time(NULL))
+        return false;
     return !(temp == -1 || t.tm_year != year - 1900 || t.tm_mon != month - 1 || t.tm_mday != day);
 }
 
 int main(int argc, char **argv)
 {
-    if (argc != 2)
-    {
-        std::cerr << "Usage: ./btc [filename]" << std::endl;
-        return 1;
-    }
-
-    if (!canOpenFile(argv[1]))
+    if (argc != 2 || !canOpenFile(argv[1]))
     {
         std::cerr << "Error: could not open file." << std::endl;
         return 1;
@@ -100,7 +97,6 @@ int main(int argc, char **argv)
 
         std::string date = exchange.trim(line.substr(0, sep));
         std::string valueStr = exchange.trim(line.substr(sep + 1));
-        float value;
 
         if (!isValidDate(date))
         {
@@ -111,6 +107,14 @@ int main(int argc, char **argv)
         if (!parseValue(valueStr))
             continue;
 
+        char *endptr;
+        float value = std::strtod(valueStr.c_str(), &endptr);
+        if (*endptr != '\0')
+        {
+            std::cerr << "Error: bad input => " << line << std::endl;
+            continue;
+        }
+            
         double rate;
         if (!exchange.findByDate(date, rate))
         {

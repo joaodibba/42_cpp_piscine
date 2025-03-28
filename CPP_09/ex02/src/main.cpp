@@ -47,7 +47,7 @@ int main(int ac, char **av)
         }
 
         long num = std::atol(av[i]);
-        if (num < INT_MIN || num > INT_MAX)
+        if (num < 1 || num > INT_MAX)
         {
             std::cerr << "Error: Integer out of range." << std::endl;
             return 1;
