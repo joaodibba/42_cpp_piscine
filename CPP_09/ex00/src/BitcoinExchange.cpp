@@ -10,7 +10,8 @@ BitcoinExchange::BitcoinExchange() {}
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
     : _data(other._data) {}
 
-BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other) {
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
+{
     if (this != &other)
         _data = other._data;
     return *this;
@@ -18,7 +19,8 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other) {
 
 BitcoinExchange::~BitcoinExchange() {}
 
-std::string BitcoinExchange::trim(const std::string &s) const {
+std::string BitcoinExchange::trim(const std::string &s) const
+{
     size_t start = 0;
     while (start < s.length() && std::isspace(s[start]))
         ++start;
@@ -30,7 +32,8 @@ std::string BitcoinExchange::trim(const std::string &s) const {
     return s.substr(start, end - start);
 }
 
-bool BitcoinExchange::load(const std::string &filepath) {
+bool BitcoinExchange::load(const std::string &filepath)
+{
     std::ifstream file(filepath.c_str());
     if (!file.is_open())
         return false;
@@ -38,7 +41,8 @@ bool BitcoinExchange::load(const std::string &filepath) {
     std::string line;
     std::getline(file, line); // skip header
 
-    while (std::getline(file, line)) {
+    while (std::getline(file, line))
+    {
         std::istringstream iss(line);
         std::string date, valueStr;
 
@@ -50,7 +54,7 @@ bool BitcoinExchange::load(const std::string &filepath) {
         date = trim(date);
         valueStr = trim(valueStr);
 
-        char* endPtr = NULL;
+        char *endPtr = NULL;
         double value = std::strtod(valueStr.c_str(), &endPtr);
 
         if (*endPtr != '\0' ||
@@ -65,11 +69,13 @@ bool BitcoinExchange::load(const std::string &filepath) {
     return true;
 }
 
-const std::map<std::string, double> &BitcoinExchange::getData() const {
+const std::map<std::string, double> &BitcoinExchange::getData() const
+{
     return _data;
 }
 
-bool BitcoinExchange::findByDate(const std::string &date, double &value) const {
+bool BitcoinExchange::findByDate(const std::string &date, double &value) const
+{
     std::map<std::string, double>::const_iterator it = _data.find(date);
     if (it == _data.end())
         return false;

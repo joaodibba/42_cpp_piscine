@@ -2,10 +2,10 @@
 
 struct Pair
 {
-    std::vector<std::pair<int, int> > pairs;
+    std::vector<std::pair<int, int>> pairs;
     int unpaired;
     bool unpaired_found;
-    Pair() : unpaired_found(false){};
+    Pair() : unpaired_found(false) {};
 };
 
 struct MinMax
@@ -31,7 +31,7 @@ Pair make_pairs_with_unpaired(const std::vector<int> &arr)
     return result;
 }
 
-MinMax split_mins_and_maxs(const std::vector<std::pair<int, int> > &pairs)
+MinMax split_mins_and_maxs(const std::vector<std::pair<int, int>> &pairs)
 {
     MinMax result;
     for (std::size_t i = 0; i < pairs.size(); ++i)

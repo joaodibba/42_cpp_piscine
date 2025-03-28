@@ -6,27 +6,32 @@
 #include <ctime>
 #include <cstdlib>
 
-bool canOpenFile(const std::string &filename) {
+bool canOpenFile(const std::string &filename)
+{
     std::ifstream file(filename.c_str());
     return file.is_open();
 }
 
-bool parseValue(const std::string &str) {
+bool parseValue(const std::string &str)
+{
     std::istringstream iss(str);
     double value;
 
     iss >> value;
 
-    if (iss.fail() || !iss.eof()) {
+    if (iss.fail() || !iss.eof())
+    {
         std::cerr << "Error: not a number." << std::endl;
         return false;
     }
 
-    if (value < 0) {
+    if (value < 0)
+    {
         std::cerr << "Error: not a positive number." << std::endl;
         return false;
     }
-    if (value > 1000) {
+    if (value > 1000)
+    {
         std::cerr << "Error: too large a number." << std::endl;
         return false;
     }
@@ -34,8 +39,8 @@ bool parseValue(const std::string &str) {
     return true;
 }
 
-
-bool isValidDate(const std::string &dateStr) {
+bool isValidDate(const std::string &dateStr)
+{
     if (dateStr.length() != 10 || dateStr[4] != '-' || dateStr[7] != '-')
         return false;
 
@@ -59,20 +64,23 @@ bool isValidDate(const std::string &dateStr) {
     return !(temp == -1 || t.tm_year != year - 1900 || t.tm_mon != month - 1 || t.tm_mday != day);
 }
 
-
-int main(int argc, char **argv) {
-    if (argc != 2) {
+int main(int argc, char **argv)
+{
+    if (argc != 2)
+    {
         std::cerr << "Usage: ./btc [filename]" << std::endl;
         return 1;
     }
 
-    if (!canOpenFile(argv[1])) {
+    if (!canOpenFile(argv[1]))
+    {
         std::cerr << "Error: could not open file." << std::endl;
         return 1;
     }
 
     BitcoinExchange exchange;
-    if (!exchange.load("data.csv")) {
+    if (!exchange.load("data.csv"))
+    {
         std::cerr << "Error: could not load exchange database." << std::endl;
         return 1;
     }
@@ -81,9 +89,11 @@ int main(int argc, char **argv) {
     std::string line;
     std::getline(input, line); // skip header
 
-    while (std::getline(input, line)) {
+    while (std::getline(input, line))
+    {
         size_t sep = line.find('|');
-        if (sep == std::string::npos) {
+        if (sep == std::string::npos)
+        {
             std::cerr << "Error: bad input => " << line << std::endl;
             continue;
         }
@@ -92,7 +102,8 @@ int main(int argc, char **argv) {
         std::string valueStr = exchange.trim(line.substr(sep + 1));
         float value;
 
-        if (!isValidDate(date)) {
+        if (!isValidDate(date))
+        {
             std::cerr << "Error: bad input => " << line << std::endl;
             continue;
         }
@@ -101,11 +112,13 @@ int main(int argc, char **argv) {
             continue;
 
         double rate;
-        if (!exchange.findByDate(date, rate)) {
-            const std::map<std::string, double>& db = exchange.getData();
+        if (!exchange.findByDate(date, rate))
+        {
+            const std::map<std::string, double> &db = exchange.getData();
             std::map<std::string, double>::const_iterator it = db.lower_bound(date);
 
-            if (it == db.begin() && (it == db.end() || it->first > date)) {
+            if (it == db.begin() && (it == db.end() || it->first > date))
+            {
                 std::cerr << "Error: no earlier date in DB." << std::endl;
                 continue;
             }
