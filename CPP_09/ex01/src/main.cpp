@@ -5,8 +5,6 @@
 #include <string>
 #include <cstdlib>
 
-
-
 double calculateRPN(const std::string &expression)
 {
     std::istringstream iss(expression);
