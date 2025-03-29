@@ -28,13 +28,6 @@ bool isValidNumber(const char *str)
     return true;
 }
 
-double getTimeSeconds()
-{
-    struct timeval tv;
-    gettimeofday(&tv, 0);
-    return (double)tv.tv_sec + (double)tv.tv_usec * 1.0e-6;
-}
-
 int main(int ac, char **av)
 {
     if (ac < 2)
@@ -71,22 +64,31 @@ int main(int ac, char **av)
         std::cout << av[i] << " ";
     std::cout << std::endl;
 
-    double startVec = getTimeSeconds();
+    struct timespec startVec, endVec;
+    clock_gettime(CLOCK_MONOTONIC, &startVec);
     std::vector<int> vecSorted = PmergeMe<int, std::vector>::sort(vec);
-    double endVec = getTimeSeconds();
+    clock_gettime(CLOCK_MONOTONIC, &endVec);
 
-    std::cout << "After:  ";
+    long timeVecUs = (startVec.tv_nsec - endVec.tv_nsec) * 1e-9;
+
+    std::cout << "After:  "; // with vector
     for (std::vector<int>::size_type i = 0; i < vecSorted.size(); ++i)
         std::cout << vecSorted[i] << " ";
     std::cout << std::endl;
 
-    double timeVecUs = (endVec - startVec) * 1.0e6;
-
-    double startList = getTimeSeconds();
+    struct timespec startlist, endList;
+    clock_gettime(CLOCK_MONOTONIC, &startlist);
     std::list<int> lstSorted = PmergeMe<int, std::list>::sort(lst);
-    double endList = getTimeSeconds();
+    clock_gettime(CLOCK_MONOTONIC, &endList);
+    
+    long timeListUs = (startlist.tv_nsec - endList.tv_nsec) * 1e-9;
 
-    double timeListUs = (endList - startList) * 1.0e6;
+
+    std::cout << "After:  "; // with vector
+    for (std::list<int>::const_iterator it = lstSorted.begin(); it != lstSorted.end(); ++it)
+        std::cout << *it << " ";
+    std::cout << std::endl;
+
 
     std::cout << "Time to process a range of " << vec.size()
               << " elements with std::vector : " 
