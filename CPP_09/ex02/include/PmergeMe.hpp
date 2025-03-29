@@ -51,7 +51,6 @@ PairContainer<T, Container> make_pairs_with_unpaired(const Container<T> &arr)
         ++it;
         if (it == end)
         {
-            // We have an unpaired leftover
             result.unpaired = first;
             result.unpaired_found = true;
             break;
@@ -112,9 +111,7 @@ void insert_mins(Container<T> &sorted, const Container<T> &mins)
     typename Container<T>::const_iterator end = mins.end();
 
     for (; it != end; ++it)
-    {
         sorted_insert(sorted, *it);
-    }
 }
 
 template <typename T, template <typename U, typename Alloc = std::allocator<U> > class Container>
